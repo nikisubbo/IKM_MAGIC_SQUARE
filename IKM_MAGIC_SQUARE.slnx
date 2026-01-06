@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="IKM_MAGIC_SQUARE/IKM_MAGIC_SQUARE.vcxproj" />
+</Solution>
