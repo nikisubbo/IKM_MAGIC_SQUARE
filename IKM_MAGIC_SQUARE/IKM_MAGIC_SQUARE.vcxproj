@@ -130,12 +130,11 @@
     <ClInclude Include="Header.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="checkCorrect.cpp" />
-    <ClCompile Include="generation.cpp" />
+    <ClCompile Include="square.cpp" />
+    <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="outInFile.cpp" />
+    <ClCompile Include="workingWithFiles.cpp" />
     <ClCompile Include="outSumm.cpp" />
-    <ClCompile Include="uniqueness.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

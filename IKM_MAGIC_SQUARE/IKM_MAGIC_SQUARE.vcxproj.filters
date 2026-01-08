@@ -23,19 +23,16 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="generation.cpp">
+    <ClCompile Include="square.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="checkCorrect.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="outInFile.cpp">
+    <ClCompile Include="workingWithFiles.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="outSumm.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="uniqueness.cpp">
+    <ClCompile Include="input.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

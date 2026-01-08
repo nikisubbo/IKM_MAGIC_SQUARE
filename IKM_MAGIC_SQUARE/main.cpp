@@ -1,36 +1,27 @@
 #include <iostream>
 #include "Header.h"
+#include <string>
 int main() {
-	int choice;
 	setlocale(LC_ALL, "");
-	cout << "Добро пожаловать в <<Машический квадрат>>" << endl;
-	cout << "1 - Генерация Магического квадрата нечётного порядка\n2 - Проверка корректности" << endl;
-	cout << "3 - Вывод сумм строк, столбцов, диагоналей\n4 - Проверка уникальности чисел" << endl;
-	cout << "5 - Вывод в файл\n0 - Выход\nВыбор: ";
-	cin >> choice;
-	while (choice != 0) {
-		if (choice >= 1 && choice <= 5) {
+	int choice = 0; 
+	cout << "Добро пожаловать в игру << Магический квадрат >> " << endl;
+	string menu_massage = "Меню:\n1) Начать игру\n2) Загрузить игру\n3) Выйти из игры\nВведите номер выбранно пункта меню: ";
+	cout << menu_massage;
+	choice = input();
+	while (choice != 3) {
+		if (choice < 3) {
 			switch (choice) {
 			case 1: generationSquare();
 				break;
-			case 2: checkCorrectSquare();
-				break;
-			case 3: outputSumm();
-				break;
-			case 4: checkUniqueness();
-				break;
-			case 5: outputInFile();
+			case 2: loadFromFile();
 				break;
 			}
-			cout << "1 - Генерация Магического квадрата нечётного порядка\n2 - Проверка корректности" << endl;
-			cout << "3 - Вывод сумм строк, столбцов, диагоналей\n4 - Проверка уникальности чисел" << endl;
-			cout << "5 - Вывод в файл\n0 - Выход\nВыбор: ";
-			cin >> choice;
+			cout << menu_massage;
+			choice = input();
 		}
 		else {
-			cout << "Некорректный ввод, попробуйте снова ввести НОМЕР нужного ПУНКТА" << endl;
-			cout << "Выбор: ";
-			cin >> choice;
+			cout << "Ошибка! Некорректный ввод, попробуйте еще раз: ";
+			choice = input();
 		}
 	}
 	cout << "Завершение работы...";
