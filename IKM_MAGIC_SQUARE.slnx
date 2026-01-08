@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="IKM_MAGIC_SQUARE/IKM_MAGIC_SQUARE.vcxproj" />
+  <Project Path="IKM_MAGIC_SQUARE/IKM_MAGIC_SQUARE.vcxproj" Id="6d031256-19fc-4af0-85bc-d1c2a4c1ebc9" />
 </Solution>
