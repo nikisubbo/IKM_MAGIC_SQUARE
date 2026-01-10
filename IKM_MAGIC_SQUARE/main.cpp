@@ -11,7 +11,7 @@ int main() {
 	while (choice != 3) {
 		if (choice < 3) {
 			switch (choice) {
-			case 1: generationSquare();
+			case 1: game();
 				break;
 			case 2: loadFromFile();
 				break;

@@ -1,7 +1,10 @@
+#include <vector>;
 using namespace std;
 int input();
-int generationSquare();
-void checkCorrectSquare();
+vector<vector<int>> generationSquare(vector<vector<int>> matrix);
+bool checkCorrectSquare(vector<vector<int>> matrix);
 void outputSumm();
 void outputToFile();
 int loadFromFile();
+void game();
+void outputMatrix(vector<vector<int>> matrix);
