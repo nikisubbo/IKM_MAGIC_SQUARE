@@ -27,6 +27,22 @@ void outputMatrix(vector<vector<int>> matrix) {
 		cout << "----------------" << endl;
 	}
 }
+void outputVector(vector<int> moves) {
+	cout << "Возможные ходы: ";
+	for (int i = 0; i < size(moves); i++) {
+		cout << moves[i] << " ";
+	}
+	cout << endl;
+}
 void outputSumm() {
 	cout << "Вывод суммы" << endl;
 }
+//vector<vector<int>> playersMove(vector<vector<int>> matrix) {
+	//int column = 0, line = 0;
+	//int number;
+	//cout << "Выберите ячеку, куда хотите вставить число (ввод в формате СТРОКА СТОЛБЕЦ): ";
+	//column = input();
+	//line = input();
+	//cout << "Выберите число, которое вы хотите вставить в эту ячейку: ";
+	//number = input();
+//}

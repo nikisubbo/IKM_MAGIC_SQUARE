@@ -8,3 +8,7 @@ void outputToFile();
 int loadFromFile();
 void game();
 void outputMatrix(vector<vector<int>> matrix);
+vector<vector<int>> generationPlayersSquare(vector<vector<int>> matrix);
+//vector<vector<int>> playersMove(vector<vector<int>> matrix);
+vector <int> possibleMoves(vector<vector<int>> matrix, vector<vector<int>> player_matrix);
+void outputVector(vector<int> moves);
