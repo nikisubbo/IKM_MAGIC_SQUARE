@@ -29,7 +29,7 @@ void outputMatrix(vector<vector<int>> matrix) {
 }
 void outputVector(vector<int> moves) {
 	cout << "Возможные ходы: ";
-	for (int i = 0; i < size(moves); i++) {
+	for (int i = 0; i < moves.size(); i++) {
 		cout << moves[i] << " ";
 	}
 	cout << endl;
@@ -37,12 +37,24 @@ void outputVector(vector<int> moves) {
 void outputSumm() {
 	cout << "Вывод суммы" << endl;
 }
-//vector<vector<int>> playersMove(vector<vector<int>> matrix) {
-	//int column = 0, line = 0;
-	//int number;
-	//cout << "Выберите ячеку, куда хотите вставить число (ввод в формате СТРОКА СТОЛБЕЦ): ";
-	//column = input();
-	//line = input();
-	//cout << "Выберите число, которое вы хотите вставить в эту ячейку: ";
-	//number = input();
-//}
+void playersMove(vector<vector<int>>& player_matrix, vector <int>& moves) {
+	int column = 0, line = 0;
+	int number;
+	cout << "Выберите ячеку, куда хотите вставить число (ввод в формате СТРОКА СТОЛБЕЦ): ";
+	line = input();
+	column = input();
+	cout << "Выберите число, которое вы хотите вставить в эту ячейку, введите НОМЕР выбранного числа: ";
+	number = input();
+	cout << "| " << line << " " << column << " " << number << " " << moves[number] << " |\n";
+	player_matrix[line][column] = moves[number];
+	moves = deleteUsedMove(moves, number);
+}
+vector <int> deleteUsedMove(vector <int> moves, int number) {
+	for (int i = 0; i < size(moves); i++) {
+		if (number == moves[i]) {
+			moves.erase(moves.begin() + i);
+			break;
+		}
+	}
+	return moves;
+}
