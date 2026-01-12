@@ -2,19 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include <random>
 #include <iomanip>
-//vector<vector<int>> generationSquare(vector<vector<int>> matrix, int n, int m) {
-	//vector <vector <int>> magic_square = { { 8, 1, 6 }, { 3, 5, 7 }, { 4, 9, 2 } };
-	//int center = (5 + (rand() % (n - 5 + 1))) - 5;
-	//srand(time(0));
-	//cout << "Идет генерация квадрата..." << endl;
-	//for (int i = 0; i < m; i++) {
-	//	for (int j = 0; j < m; j++) {
-	//		matrix[i][j] = magic_square[i][j] + center;
-	//	}
-	//}
-	//return matrix;
-//}
+#include <algorithm>
 vector<vector<int>> generationSquare(vector<vector<int>> matrix, int size, int center_num) {
 	int number = 1;
 	int column = size / 2;
@@ -43,12 +33,24 @@ vector<vector<int>> generationSquare(vector<vector<int>> matrix, int size, int c
 	int center_position = size / 2;
 	int current_center_num = matrix[center_position][center_position];
 	int difference = center_num - current_center_num;	
+	int min_value = matrix[0][0];
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
 			matrix[i][j] += difference;
+			if (matrix[i][j] < min_value) {
+				min_value = matrix[i][j];
+			}
 		}
 	}
-	return matrix;
+	if (min_value <= 0) {
+		int shift = 1 - min_value;
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				matrix[i][j] += shift;
+			}
+		}
+	}
+	return matrix;	
 }
 vector<vector<int>> generationPlayersSquare(vector<vector<int>> matrix, int m){
 	vector < vector <int> > player_matrix1(3, vector <int>(3));
@@ -96,10 +98,11 @@ bool checkCorrectSquare(vector<vector<int>> matrix, int m) { //условие магическо
 	if (temp_sum1 != summa || temp_sum2 != summa) {
 		return false;
 	}
-	return true;
+	return true;// 8 1 6 / 3 5 7 / 4 9 2 
 }
 vector <int> possibleMoves(vector<vector<int>> matrix, vector<vector<int>> player_matrix, int m) {
 	vector <int> moves;
+	//default_random_engine rand_pos(time(0));
 	for (int i = 0; i < m; i++) {
 		for (int j = 0; j < m; j++) {
 			if (matrix[i][j] != player_matrix[i][j]) {
@@ -107,9 +110,10 @@ vector <int> possibleMoves(vector<vector<int>> matrix, vector<vector<int>> playe
 			}
 		}
 	}
+	//shuffle(moves.begin(), moves.end(), rand_pos);
 	return moves;
 }
-bool testWinOrLose(vector<vector<int>> matrix, vector<vector<int>> player_matrix) {
+bool testWinOrLose(vector<vector<int>> matrix, vector<vector<int>> player_matrix, vector <int> moves) {
 	int num_matches = 0;
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
@@ -118,7 +122,7 @@ bool testWinOrLose(vector<vector<int>> matrix, vector<vector<int>> player_matrix
 			}
 		}
 	}
-	if (num_matches == 9) {
+	if (num_matches == 9 || moves.size() == 0) {
 		return 1;
 	}
 	else {

@@ -13,4 +13,5 @@ void playersMove(vector<vector<int>>& matrix, vector <int>& moves);
 vector <int> possibleMoves(vector<vector<int>> matrix, vector<vector<int>> player_matrix, int m);
 void outputVector(vector<int> moves);
 vector <int> deleteUsedMove(vector <int> moves, int number);
-bool testWinOrLose(vector<vector<int>> matrix, vector<vector<int>> player_matrix);
+bool testWinOrLose(vector<vector<int>> matrix, vector<vector<int>> player_matrix, vector <int> moves);
+void saveGame();
