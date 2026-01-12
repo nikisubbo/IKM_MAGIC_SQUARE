@@ -113,16 +113,8 @@ vector <int> possibleMoves(vector<vector<int>> matrix, vector<vector<int>> playe
 	//shuffle(moves.begin(), moves.end(), rand_pos);
 	return moves;
 }
-bool testWinOrLose(vector<vector<int>> matrix, vector<vector<int>> player_matrix, vector <int> moves) {
-	int num_matches = 0;
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
-			if (matrix[i][j] == player_matrix[i][j]) {
-				num_matches++;
-			}
-		}
-	}
-	if (num_matches == 9 || moves.size() == 0) {
+bool testEndGame(vector<vector<int>> player_matrix, vector <int> moves) {
+	if (moves.size() == 0) {
 		return 1;
 	}
 	else {

@@ -1,8 +1,11 @@
 #include "Header.h"
 #include <iostream>
-#include <string>
 #include <vector>
+#include <ctime>
+#include <random>
 #include <iomanip>
+#include <algorithm>
+#include <string>
 int input() {
 	setlocale(LC_ALL, "");
 	string key_input;

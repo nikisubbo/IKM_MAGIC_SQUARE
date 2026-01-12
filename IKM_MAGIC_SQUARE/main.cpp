@@ -11,9 +11,9 @@ int main() {
 	while (choice != 3) {
 		if (choice < 3) {
 			switch (choice) {
-			case 1: game();
+			case 1: newGame();
 				break;
-			case 2: loadFromFile();
+			case 2: loadGame();
 				break;
 			}
 			cout << menu_massage;

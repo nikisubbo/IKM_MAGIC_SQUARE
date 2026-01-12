@@ -1,9 +1,55 @@
 #include "Header.h"
 #include <iostream>
-#include <ostream>
-void outputToFile() {
-	cout << "Вывод в файл" << endl;
+#include <vector>
+#include <ctime>
+#include <random>
+#include <iomanip>
+#include <algorithm>
+#include <fstream>
+void outputToFile(vector <vector<int>> player_matrix, int size, vector <int> moves) {
+	string file_name_matrix;
+	cout << "Введите название сохранения (название файла): ";
+	cin >> file_name_matrix;
+	file_name_matrix = "D:\\Programming\\repos\\IKM_MAGIC_SQUARE\\IKM_MAGIC_SQUARE\\x64\\Debug\\" + file_name_matrix + "_matrix" + ".txt";
+	cout << file_name_matrix;
+	ofstream file(file_name_matrix);
+	file << "  | 1  |  2 |  3 |" << endl;
+	file << "------------------" << endl;
+	for (int i = 0; i < size; i++) {
+		file << i + 1 << " ";
+		for (int j = 0; j < size; j++) {
+			file << "|" << setw(4) << player_matrix[i][j];
+		}
+		file << "|" << endl;
+		file << "------------------" << endl;
+	}
+	file.close();
+	string file_name_moves;
+	file_name_moves = "D:\\Programming\\repos\\IKM_MAGIC_SQUARE\\IKM_MAGIC_SQUARE\\x64\\Debug\\" + file_name_moves + "_moves" + ".txt";
+	ofstream file_(file_name_moves);
+	for (int i = 0; i < moves.size(); i++) {
+		file_ << i + 1 << ")" << moves[i] << "  ";
+	}
 }
-int loadFromFile() {
-	return 1;
+vector<vector<int>> loadFromFileMatrix(vector<vector<int>> player_matrix, string file_name) {
+	string file_name_matrix = file_name;
+	file_name_matrix = "D:\\Programming\\repos\\IKM_MAGIC_SQUARE\\IKM_MAGIC_SQUARE\\x64\\Debug\\" + file_name_matrix + "_matrix" + ".txt";
+	ifstream file(file_name_matrix);
+	for (int i = 0; i < player_matrix.size(); i++) {
+		for (int j = 0; j < player_matrix.size(); j++) {
+			file >> player_matrix[i][j];
+		}
+
+	}
+	return player_matrix;
+}
+vector<int> loadFromFileMoves(vector<int> moves, string file_name) {
+	string file_name_moves = file_name;
+	file_name_moves = "D:\\Programming\\repos\\IKM_MAGIC_SQUARE\\IKM_MAGIC_SQUARE\\x64\\Debug\\" + file_name_moves + "_moves" + ".txt";
+	ifstream file(file_name_moves);
+	int move;
+	while (file >> move) {
+		moves.push_back(move);
+	}
+	return moves;
 }
