@@ -1,9 +1,9 @@
 #include <vector>;
 using namespace std;
 int input();
-vector<vector<int>> generationSquare(vector<vector<int>> matrix, int n, int m);
+vector<vector<int>> generationSquare(vector<vector<int>> matrix, int size, int center_num);
 bool checkCorrectSquare(vector<vector<int>> matrix, int m);
-void outputSumm();
+void outputSumm(vector<vector<int>> matrix);
 void outputToFile();
 int loadFromFile();
 void game();
@@ -13,3 +13,4 @@ void playersMove(vector<vector<int>>& matrix, vector <int>& moves);
 vector <int> possibleMoves(vector<vector<int>> matrix, vector<vector<int>> player_matrix, int m);
 void outputVector(vector<int> moves);
 vector <int> deleteUsedMove(vector <int> moves, int number);
+bool testWinOrLose(vector<vector<int>> matrix, vector<vector<int>> player_matrix);

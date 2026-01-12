@@ -3,14 +3,49 @@
 #include <vector>
 #include <ctime>
 #include <iomanip>
-vector<vector<int>> generationSquare(vector<vector<int>> matrix, int n, int m) {
-	vector <vector <int>> magic_square = { { 8, 1, 6 }, { 3, 5, 7 }, { 4, 9, 2 } };
-	int center = (5 + (rand() % (n - 5 + 1))) - 5;
-	srand(time(0));
-	cout << "Идет генерация квадрата..." << endl;
-	for (int i = 0; i < m; i++) {
-		for (int j = 0; j < m; j++) {
-			matrix[i][j] = magic_square[i][j] + center;
+//vector<vector<int>> generationSquare(vector<vector<int>> matrix, int n, int m) {
+	//vector <vector <int>> magic_square = { { 8, 1, 6 }, { 3, 5, 7 }, { 4, 9, 2 } };
+	//int center = (5 + (rand() % (n - 5 + 1))) - 5;
+	//srand(time(0));
+	//cout << "Идет генерация квадрата..." << endl;
+	//for (int i = 0; i < m; i++) {
+	//	for (int j = 0; j < m; j++) {
+	//		matrix[i][j] = magic_square[i][j] + center;
+	//	}
+	//}
+	//return matrix;
+//}
+vector<vector<int>> generationSquare(vector<vector<int>> matrix, int size, int center_num) {
+	int number = 1;
+	int column = size / 2;
+	int line = 0; //для первого числа
+	while (number <= size * size) {
+		matrix[line][column] = number;
+		int current_line = line;
+		int current_column = column;
+		line--;
+		column++;
+		if (line < 0) {
+			line = size - 1;
+		}
+		if (column == size) {
+			column = 0;
+		}
+		if (matrix[line][column]){
+			line = current_line + 1;
+			column = current_column;
+			if (line == size) {
+				line = 0;
+			}
+		}
+		number++;
+	}
+	int center_position = size / 2;
+	int current_center_num = matrix[center_position][center_position];
+	int difference = center_num - current_center_num;	
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			matrix[i][j] += difference;
 		}
 	}
 	return matrix;
@@ -73,4 +108,20 @@ vector <int> possibleMoves(vector<vector<int>> matrix, vector<vector<int>> playe
 		}
 	}
 	return moves;
+}
+bool testWinOrLose(vector<vector<int>> matrix, vector<vector<int>> player_matrix) {
+	int num_matches = 0;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			if (matrix[i][j] == player_matrix[i][j]) {
+				num_matches++;
+			}
+		}
+	}
+	if (num_matches == 9) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
 }
