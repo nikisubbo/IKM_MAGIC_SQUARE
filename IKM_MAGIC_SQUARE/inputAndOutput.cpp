@@ -9,15 +9,14 @@
 int input() {//фукнция для ввода, чтобы автоматически проверять на "критические" значения
 	setlocale(LC_ALL, "");
 	string key_input;
-	int number;
 	cin >> key_input;
-	number = stoi(key_input);
-	if (number < INT_MAX - 1) {
-		return number;
+	long long number = stoll(key_input);
+	if (number >= INT_MIN && number <= INT_MAX) {
+		return static_cast<int>(number);//безопасный переход от long long в int
 	}
 	else {
-		cout << "Ошибка! Некорректный ввод, попробуйте еще раз: ";
-		input();
+		cout << "Ошибка. Некорректный ввод, попробуйте другое число (номер пункта из меню): ";
+		return input();
 	}
 }
 void outputMatrix(vector<vector<int>> matrix) {//вывод матрицы в виде таблицы
