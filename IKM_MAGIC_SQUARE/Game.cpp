@@ -7,21 +7,29 @@
 #include <algorithm>
 void newGame() {
 	srand(time(0));
-	int center_num = rand() % 11;
-	int size = 3;
+	int complexity = 11; //заготовка под уровни сложности, но реализовать не успеваю
+	int center_num = rand() % complexity;
+	int size = 3;//можно использовать для уровней сложности (3, 5, 7... столбцов и строк)
 	vector < vector <int> > matrix(size, vector <int>(size));
 	vector < vector <int> > player_matrix((size), vector <int>(size));
 	vector <int> moves;
-	matrix = generationSquare(matrix, size, center_num);
-	player_matrix = generationPlayersSquare(matrix, size);
-	//outputSumm(matrix);
-	//outputMatrix(matrix);
-	moves = possibleMoves(matrix, player_matrix, size);
-	while (!testEndGame(player_matrix, moves)) {
+	matrix = generationSquare(matrix, size, center_num);//генерируем исходный квадрат
+	player_matrix = generationPlayersSquare(matrix, size);//выдаем игроку его поле
+	moves = possibleMoves(matrix, player_matrix, size);//записываем игроку ходы
+	while (!testEndGame(player_matrix, moves)) {//пока игра не окончена, выводим поле и даем игроку сделать ход, либо сохранить игру
 		outputMatrix(player_matrix);
 		outputVector(moves);
 		playersMove(player_matrix, moves);
 		cout << "\x1b[33mХод сделан.\x1b[0m" << endl;
+		cout << "Если вы хотите сохранить игру, введите 1, если хотите продолжить введите 0: ";
+		int choice = input();
+		if (choice == 1) {
+			saveGame(player_matrix, size, moves);
+			return;
+		}
+		else if (choice != 0 && choice != 1) {
+			cout << "Ошибка. Некорректный ввод." << endl;
+		}
 	}
 	cout << "\x1b[33mВаш квадрат:\x1b[0m " << endl;
 	outputMatrix(player_matrix);
@@ -36,20 +44,29 @@ void newGame() {
 	}
 	saveGame(player_matrix, size, moves);
 }
-void loadGame() {
+void loadGame() {//та же фукнция игры, но квадрат и ходы не генерируются, а читаются из файла
 	int size = 3;
 	vector<vector<int>> player_matrix(size, vector<int>(size));
 	vector<int> moves;
 	string file_name;
 	cout << "Введите название сохранения (название файла): ";
 	cin >> file_name;
-	player_matrix = loadFromFileMatrix(player_matrix, file_name);
-	moves = loadFromFileMoves(moves, file_name);
+	player_matrix = loadFromFileMatrix(player_matrix, file_name);//чтение из файла
+	moves = loadFromFileMoves(moves, file_name);//чтение из файла
 	while (!testEndGame(player_matrix, moves)) {
 		outputMatrix(player_matrix);
 		outputVector(moves);
 		playersMove(player_matrix, moves);
 		cout << "\x1b[33mХод сделан.\x1b[0m" << endl;
+		cout << "Если вы хотите сохранить игру, введите 1, если хотите продолжить введите 0: ";
+		int choice = input();
+		if (choice == 1) {
+			saveGame(player_matrix, size, moves);
+			return;
+		}
+		else if (choice != 0 && choice != 1) {
+			cout << "Ошибка. Некорректный ввод." << endl;
+		}
 	}
 	cout << "\x1b[33mВаш квадрат:\x1b[0m " << endl;
 	outputMatrix(player_matrix);
@@ -59,15 +76,10 @@ void loadGame() {
 	}
 	else {
 		cout << "\x1b[33mУпс, этот квадрат не магический, вы проиграли\x1b[0m" << endl;
-		//cout << "\x1b[33mИскомая сумма была равна\x1b[0m ";
-		//outputSumm(matrix);
 	}
 	saveGame(player_matrix, size, moves);
 }
-void inGameMassage() {
-
-}
-void saveGame(vector <vector <int>> player_matrix, int size, vector <int> moves) {
+void saveGame(vector <vector <int>> player_matrix, int size, vector <int> moves) {//Сохранение игры
 	int choice = 0;
 	cout << "\x1b[33Хотите ли вы сохранить игру?\n1 - Да\n2 - Нет\x1b[0m" << endl;
 	cout << "\x1b[33Выбор: \x1b[0m";

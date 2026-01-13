@@ -8,6 +8,10 @@ int main() {
 	string menu_massage = "Меню:\n1) Начать игру\n2) Загрузить игру\n3) Выйти из игры\nВведите номер выбранно пункта меню: ";
 	cout << menu_massage;
 	choice = input();
+	if (choice <= 0) {
+		cout << "Введено некорректное число." << endl;
+		main();
+	}
 	while (choice != 3) {
 		if (choice < 3) {
 			switch (choice) {
