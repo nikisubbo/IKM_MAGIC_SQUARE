@@ -7,7 +7,7 @@
 #include <algorithm>
 void newGame() {
 	srand(time(0));
-	int complexity = 11; //заготовка под уровни сложности, но реализовать не удалось
+	int complexity = 11; //заготовка под уровни сложности, но реализовать не успеваю
 	int center_num = rand() % complexity;
 	int size = 3;//можно использовать для уровней сложности (3, 5, 7... столбцов и строк)
 	vector < vector <int> > matrix(size, vector <int>(size));
