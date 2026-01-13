@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <string>
-int input() {
+int input() {//фукнция для ввода, чтобы автоматически проверять на "критические" значения
 	setlocale(LC_ALL, "");
 	string key_input;
 	int number;
@@ -20,36 +20,35 @@ int input() {
 		input();
 	}
 }
-void outputMatrix(vector<vector<int>> matrix) {
-	cout << "  \x1b[33m| 1  |  2 |  3 |\x1b[0m" << endl;
+void outputMatrix(vector<vector<int>> matrix) {//вывод матрицы в виде таблицы
+	cout << "  \x1b[33m| 1  |  2 |  3 |\x1b[0m" << endl;//\x1b[33m \x1b[0m нужны для окрашивания в желтый цвет
 	cout << "------------------" << endl;
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < matrix.size(); i++) {
 		cout << "\x1b[33m" << i + 1 << "\x1b[0m ";
-		for (int j = 0; j < 3; j++) {
+		for (int j = 0; j < matrix.size(); j++) {
 			cout << "|" << setw(4) << matrix[i][j];
 		}
 		cout << "|" << endl;
 		cout << "------------------" << endl;
 	}
 }
-void outputVector(vector<int> moves) {
-	cout << "Возможные ходы: ";
+void outputVector(vector<int> moves) { // вывод вектора с ходами через скобку 
+	cout << "Возможные ходы: "; 
 	for (int i = 0; i < moves.size(); i++) {
 		cout << "\x1b[33m" << i + 1 << ")" << "\x1b[0m" << moves[i] << "  ";
 	}
 	cout << endl;
 }
-void outputSumm(vector<vector<int>> matrix) {
-	int summ = matrix[0][0] + matrix[0][1] + matrix[0][2];
+void outputSumm(vector<vector<int>> matrix) { // вывод магической суммы
+	int summ = matrix[0][0] + matrix[0][1] + matrix[0][2];//подходит любая сумма по любой линии
 	cout << "\x1b[33m" << summ << "\x1b[0m" << endl;
 }
-void playersMove(vector<vector<int>>& player_matrix, vector <int>& moves) {
+void playersMove(vector<vector<int>>& player_matrix, vector <int>& moves) { //ход игрока
 	int column = 0, line = 0;
 	int number = 0;
 	int choice = 0;
 	cout << "Выберите ячеку, куда хотите вставить число (ввод в формате" << " \x1b[33mСТРОКА СТОЛБЕЦ\x1b[0m): ";
-	//cout << "|||" << moves.size() << "|||" << endl;
-	line = input() - 1;
+	line = input() - 1; //-1 потому что пользователю проще начинать подсчет с единицы а не с нуля
 	column = input() - 1;
 	if (line > player_matrix.size() || column > player_matrix.size()) {
 		cout << "Ошибка, введите корректные СТРОКУ СТОЛБЕЦ (число от 1 до 3)" << endl;
@@ -65,7 +64,6 @@ void playersMove(vector<vector<int>>& player_matrix, vector <int>& moves) {
 			return;
 		}
 		else {
-			//cout << "| " << line << " " << column << " " << number << " " << moves[number] << " |\n";
 			if (player_matrix[line][column] != 0) {
 				cout << "Ячейка уже занята.\nЕсли вы хотите заменить в ней значение, введите 1, если хотите оставить как есть, введите 0: ";
 				choice = input();
@@ -75,8 +73,8 @@ void playersMove(vector<vector<int>>& player_matrix, vector <int>& moves) {
 				else if (choice == 1) {
 					int old_value = player_matrix[line][column];
 					player_matrix[line][column] = moves[number];
-					moves.push_back(old_value);
-					moves = deleteUsedMove(moves, number);
+					moves.push_back(old_value);//вставляем в конец то значение, которое было в матрице до замены
+					moves = deleteUsedMove(moves, number);//удаляем то, что вставили
 				}
 				else {
 					cout << "\x1b[33mОшибка. Некорректный ввод\x1b[0m" << endl;
@@ -90,9 +88,9 @@ void playersMove(vector<vector<int>>& player_matrix, vector <int>& moves) {
 		}
 	}
 }
-vector <int> deleteUsedMove(vector <int> moves, int number) {
+vector <int> deleteUsedMove(vector <int> moves, int number) {//удаление хода из вектора, после хода игрока
 	for (int i = 0; i < size(moves); i++) {
-		if (number == i) {
+		if (number == i) {//если номер числа совпал с номером в векторе, то удалить
 			moves.erase(moves.begin() + i);
 			break;
 		}
