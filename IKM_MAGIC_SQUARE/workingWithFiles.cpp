@@ -11,7 +11,7 @@ void outputToFile(vector <vector<int>> player_matrix, int size, vector <int> mov
 	cout << "Введите название сохранения (название файла): ";//игроку нужно ввести только название сохранение, расширение файла вставляется автоматически
 	cin >> file_name;
 	string file_name_matrix = "D:\\Programming\\repos\\IKM_MAGIC_SQUARE\\IKM_MAGIC_SQUARE\\x64\\Debug\\" + file_name + "_matrix" + ".txt";
-	cout << file_name_matrix;
+	cout << file_name_matrix << endl;
 	ofstream file(file_name_matrix);
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
@@ -31,6 +31,11 @@ vector<vector<int>> loadFromFileMatrix(vector<vector<int>> player_matrix, string
 	string file_name_matrix = file_name;
 	file_name_matrix = "D:\\Programming\\repos\\IKM_MAGIC_SQUARE\\IKM_MAGIC_SQUARE\\x64\\Debug\\" + file_name_matrix + "_matrix" + ".txt";
 	ifstream file(file_name_matrix);
+	if (!file.is_open()) {
+		cout << "Такого сохранения нет или не удалось открыть файл, попробуйте ввести другое имя сохранения: ";
+		cin >> file_name;
+		return loadFromFileMatrix(player_matrix, file_name);
+	}
 	for (int i = 0; i < player_matrix.size(); i++) {
 		for (int j = 0; j < player_matrix.size(); j++) {
 			file >> player_matrix[i][j];
