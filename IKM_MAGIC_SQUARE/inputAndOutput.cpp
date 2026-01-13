@@ -12,7 +12,7 @@ int input() {
 	int number;
 	cin >> key_input;
 	number = stoi(key_input);
-	if (number >= 0 && number < INT_MAX - 1) {
+	if (number < INT_MAX - 1) {
 		return number;
 	}
 	else {
@@ -72,11 +72,15 @@ void playersMove(vector<vector<int>>& player_matrix, vector <int>& moves) {
 				if (choice == 0) {
 					return;
 				}
-				else {
+				else if (choice == 1) {
 					int old_value = player_matrix[line][column];
 					player_matrix[line][column] = moves[number];
 					moves.push_back(old_value);
 					moves = deleteUsedMove(moves, number);
+				}
+				else {
+					cout << "\x1b[33mОшибка. Некорректный ввод\x1b[0m" << endl;
+					return;
 				}
 			}
 			else {

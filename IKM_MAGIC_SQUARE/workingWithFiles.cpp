@@ -7,28 +7,24 @@
 #include <algorithm>
 #include <fstream>
 void outputToFile(vector <vector<int>> player_matrix, int size, vector <int> moves) {
-	string file_name_matrix;
+	string file_name;
 	cout << "Введите название сохранения (название файла): ";
-	cin >> file_name_matrix;
-	file_name_matrix = "D:\\Programming\\repos\\IKM_MAGIC_SQUARE\\IKM_MAGIC_SQUARE\\x64\\Debug\\" + file_name_matrix + "_matrix" + ".txt";
+	cin >> file_name;
+	string file_name_matrix = "D:\\Programming\\repos\\IKM_MAGIC_SQUARE\\IKM_MAGIC_SQUARE\\x64\\Debug\\" + file_name + "_matrix" + ".txt";
 	cout << file_name_matrix;
 	ofstream file(file_name_matrix);
-	file << "  | 1  |  2 |  3 |" << endl;
-	file << "------------------" << endl;
 	for (int i = 0; i < size; i++) {
-		file << i + 1 << " ";
 		for (int j = 0; j < size; j++) {
-			file << "|" << setw(4) << player_matrix[i][j];
+			file << player_matrix[i][j] << " ";
 		}
-		file << "|" << endl;
-		file << "------------------" << endl;
+		file << endl;
 	}
 	file.close();
-	string file_name_moves;
+	string file_name_moves = file_name;
 	file_name_moves = "D:\\Programming\\repos\\IKM_MAGIC_SQUARE\\IKM_MAGIC_SQUARE\\x64\\Debug\\" + file_name_moves + "_moves" + ".txt";
 	ofstream file_(file_name_moves);
 	for (int i = 0; i < moves.size(); i++) {
-		file_ << i + 1 << ")" << moves[i] << "  ";
+		file_ << moves[i] << "  ";
 	}
 }
 vector<vector<int>> loadFromFileMatrix(vector<vector<int>> player_matrix, string file_name) {

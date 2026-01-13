@@ -22,6 +22,15 @@ void newGame() {
 		outputVector(moves);
 		playersMove(player_matrix, moves);
 		cout << "\x1b[33mХод сделан.\x1b[0m" << endl;
+		cout << "Если вы хотите сохранить игру, введите 1, если хотите продолжить введите 0: ";
+		int choice = input();
+		if (choice == 1) {
+			saveGame(player_matrix, size, moves);
+			return;
+		}
+		else if (choice != 0 && choice != 1) {
+			cout << "Ошибка. Некорректный ввод." << endl;
+		}
 	}
 	cout << "\x1b[33mВаш квадрат:\x1b[0m " << endl;
 	outputMatrix(player_matrix);
@@ -50,6 +59,15 @@ void loadGame() {
 		outputVector(moves);
 		playersMove(player_matrix, moves);
 		cout << "\x1b[33mХод сделан.\x1b[0m" << endl;
+		cout << "Если вы хотите сохранить игру, введите 1, если хотите продолжить введите 0: ";
+		int choice = input();
+		if (choice == 1) {
+			saveGame(player_matrix, size, moves);
+			return;
+		}
+		else if (choice != 0 && choice != 1) {
+			cout << "Ошибка. Некорректный ввод." << endl;
+		}
 	}
 	cout << "\x1b[33mВаш квадрат:\x1b[0m " << endl;
 	outputMatrix(player_matrix);
@@ -59,13 +77,8 @@ void loadGame() {
 	}
 	else {
 		cout << "\x1b[33mУпс, этот квадрат не магический, вы проиграли\x1b[0m" << endl;
-		//cout << "\x1b[33mИскомая сумма была равна\x1b[0m ";
-		//outputSumm(matrix);
 	}
 	saveGame(player_matrix, size, moves);
-}
-void inGameMassage() {
-
 }
 void saveGame(vector <vector <int>> player_matrix, int size, vector <int> moves) {
 	int choice = 0;
