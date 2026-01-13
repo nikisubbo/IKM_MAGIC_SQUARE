@@ -81,8 +81,8 @@ void loadGame() {//та же фукнция игры, но квадрат и ходы не генерируются, а чита
 }
 void saveGame(vector <vector <int>> player_matrix, int size, vector <int> moves) {//Сохранение игры
 	int choice = 0;
-	cout << "\x1b[33Хотите ли вы сохранить игру?\n1 - Да\n2 - Нет\x1b[0m" << endl;
-	cout << "\x1b[33Выбор: \x1b[0m";
+	cout << "\x1b[33mХотите ли вы сохранить игру?\n1 - Да\n2 - Нет\x1b[0m" << endl;
+	cout << "\x1b[33mВыбор: \x1b[0m";
 	choice = input();
 	if (choice == 1) {
 		outputToFile(player_matrix, size, moves);
